@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import Footer from "./components/Footer.js";
 
 const StatsCard = styled.div`
   background-color: #fff;
@@ -15,6 +16,7 @@ const StatsCard = styled.div`
   width: 95%;
   text-align: center;
   max-width: 800px;
+  margin-bottom: 100px;
 `;
 
 const Container = styled.div`
@@ -101,6 +103,12 @@ function App() {
           <p>Empates: {stats.empates}</p>
         </StatsCard>
       </Container>
+      <Footer
+        socialLinks={[
+          { name: "GitHub", url: "https://github.com/igordsrosa2" },
+          { name: "LinkedIn", url: "https://linkedin.com/in/igordsrosa" },
+        ]}
+      />
       <ToastContainer autoClose={3000} position="bottom-left" />
       <GlobalStyle />
     </>
