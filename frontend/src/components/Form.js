@@ -37,6 +37,15 @@ const Button = styled.button`
   background-color: #003049;
   color: white;
   height: 42px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  &:hover {
+    background-color: #f77f00;
+    transform: scale(1.03);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;
 
 const Form = ({ onEdit, setOnEdit, getJogos }) => {
@@ -46,7 +55,6 @@ const Form = ({ onEdit, setOnEdit, getJogos }) => {
     if (onEdit) {
       const jogo = ref.current;
 
-      // Preenche os campos apenas se os valores forem definidos
       jogo.adversario.value = onEdit.adversario || "";
       jogo.local.value = onEdit.local || "";
       jogo.data.value = onEdit.data || "";
@@ -59,7 +67,6 @@ const Form = ({ onEdit, setOnEdit, getJogos }) => {
 
     const jogo = ref.current;
 
-    // Verificação de preenchimento dos campos
     if (
       !jogo.adversario.value ||
       !jogo.local.value ||
