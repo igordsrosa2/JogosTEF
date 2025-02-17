@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
 
+// Estilos para a tabela
 const Table = styled.table`
   width: 100%;
   background-color: #fff;
@@ -15,12 +16,14 @@ const Table = styled.table`
   word-break: break-all;
 `;
 
+// Estilos do cabeçalho da tabela
 export const Thead = styled.thead``;
-
 export const Tbody = styled.tbody``;
 
+// Estilos para as linhas da tabela
 export const Tr = styled.tr``;
 
+// Estilos para as células da tabela
 export const Th = styled.th`
   text-align: start;
   border-bottom: inset;
@@ -41,6 +44,17 @@ export const Td = styled.td`
   }
 `;
 
+// Estilos para os ícones
+const IconButton = styled.div`
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px;
+  transition: transform 0.2s;
+  &:hover {
+    transform: scale(1.2);
+  }
+`;
+
 const Grid = ({ jogos, setJogos, setOnEdit }) => {
   const handleEdit = (item) => {
     setOnEdit(item);
@@ -51,7 +65,6 @@ const Grid = ({ jogos, setJogos, setOnEdit }) => {
       .delete("http://localhost:8800/" + id)
       .then(({ data }) => {
         const newArray = jogos.filter((jogo) => jogo.id !== id);
-
         setJogos(newArray);
         toast.success(data);
       })
@@ -59,6 +72,9 @@ const Grid = ({ jogos, setJogos, setOnEdit }) => {
 
     setOnEdit(null);
   };
+
+  // Ordena os jogos pela data antes de exibi-los
+  const sortedJogos = jogos.sort((a, b) => new Date(b.data) - new Date(a.data));
 
   return (
     <Table>
@@ -71,21 +87,25 @@ const Grid = ({ jogos, setJogos, setOnEdit }) => {
         </Tr>
       </Thead>
       <Tbody>
-        {jogos.map((item, i) => (
+        {sortedJogos.map((item, i) => (
           <Tr key={i}>
-            <Td width="30%">{item.adversario}</Td>
-            <Td onlyWeb width="30%">
+            <Td width="25%">{item.adversario}</Td>
+            <Td onlyWeb width="35%">
               {item.local}
             </Td>
-            <Td onlyWeb width="20%">
+            <Td onlyWeb width="15%">
               {item.data}
             </Td>
-            <Td width="20%">{item.resultado}</Td>
+            <Td width="15%">{item.resultado}</Td>
             <Td alignCenter width="5%">
-              <FaEdit onClick={() => handleEdit(item)} />
+              <IconButton onClick={() => handleEdit(item)}>
+                <FaEdit size={20} />
+              </IconButton>
             </Td>
             <Td alignCenter width="5%">
-              <FaTrash onClick={() => handleDelete(item.id)} />
+              <IconButton onClick={() => handleDelete(item.id)}>
+                <FaTrash size={20} />
+              </IconButton>
             </Td>
           </Tr>
         ))}

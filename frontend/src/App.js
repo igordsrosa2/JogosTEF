@@ -17,7 +17,21 @@ const Container = styled.div`
   gap: 10px;
 `;
 
-const Title = styled.h2``;
+const Title = styled.h2`
+  padding: 30px;
+  font-size: 32px;
+`;
+
+const Subtitle = styled.p`
+  font-size: 16px;
+  margin-top: -40px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 30px;
+  padding-right: 30px;
+`;
 
 function App() {
   const [jogos, setJogos] = useState([]);
@@ -39,7 +53,10 @@ function App() {
   return (
     <>
       <Container>
-        <Title>JOGOS</Title>
+        <Title>JOGOS DO TEF EM 2025</Title>
+        <Subtitle>
+          Tabela para controle dos jogos realizados pelo clube TEF em 2025
+        </Subtitle>
         <Form onEdit={onEdit} setOnEdit={setOnEdit} getJogos={getJogos} />
         <Grid jogos={jogos} setJogos={setJogos} setOnEdit={setOnEdit} />
       </Container>

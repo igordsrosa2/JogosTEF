@@ -9,11 +9,8 @@ import {
 const router = express.Router();
 
 router.get("/", getJogos);
-
-router.get("/", addJogo);
-
-router.get("/:id", updateJogo);
-
-router.get("/:id", deleteJogo);
+router.post("/", addJogo);
+router.put("/:id", updateJogo);
+router.delete("/:id", deleteJogo);
 
 export default router;

@@ -12,7 +12,7 @@ export const getJogos = (_, res) => {
 
 export const addJogo = (req, res) => {
   const q =
-    "INSERT INTO usuarios(`adversario`, `local`, `data`, `resultado`) VALUES(?)";
+    "INSERT INTO jogos(`adversario`, `local`, `data`, `resultado`) VALUES(?)";
 
   const values = [
     req.body.adversario,
@@ -30,7 +30,7 @@ export const addJogo = (req, res) => {
 
 export const updateJogo = (req, res) => {
   const q =
-    "UPDATE usuarios SET `adversario` = ?, `local` = ?, `data` = ?, `resultado` = ? WHERE `id` = ?";
+    "UPDATE jogos SET `adversario` = ?, `local` = ?, `data` = ?, `resultado` = ? WHERE `id` = ?";
 
   const values = [
     req.body.adversario,
@@ -47,7 +47,7 @@ export const updateJogo = (req, res) => {
 };
 
 export const deleteJogo = (req, res) => {
-  const q = "DELETE FROM usuarios WHERE `id` = ?";
+  const q = "DELETE FROM jogos WHERE `id` = ?";
 
   db.query(q, [req.params.id], (err) => {
     if (err) return res.json(err);

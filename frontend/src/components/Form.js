@@ -46,10 +46,11 @@ const Form = ({ onEdit, setOnEdit, getJogos }) => {
     if (onEdit) {
       const jogo = ref.current;
 
-      jogo.adversario.value = onEdit.adversario;
-      jogo.local.value = onEdit.local;
-      jogo.data.value = onEdit.data;
-      jogo.resultado.value = onEdit.resultado;
+      // Preenche os campos apenas se os valores forem definidos
+      jogo.adversario.value = onEdit.adversario || "";
+      jogo.local.value = onEdit.local || "";
+      jogo.data.value = onEdit.data || "";
+      jogo.resultado.value = onEdit.resultado || "";
     }
   }, [onEdit]);
 
@@ -58,6 +59,7 @@ const Form = ({ onEdit, setOnEdit, getJogos }) => {
 
     const jogo = ref.current;
 
+    // Verificação de preenchimento dos campos
     if (
       !jogo.adversario.value ||
       !jogo.local.value ||
@@ -101,19 +103,19 @@ const Form = ({ onEdit, setOnEdit, getJogos }) => {
     <FormContainer ref={ref} onSubmit={handleSubmit}>
       <InputArea>
         <Label>Adversário</Label>
-        <InputArea name="adversario" />
+        <Input name="adversario" />
       </InputArea>
       <InputArea>
         <Label>Local</Label>
-        <InputArea name="local" />
+        <Input name="local" />
       </InputArea>
       <InputArea>
         <Label>Data</Label>
-        <InputArea name="data" type="date" />
+        <Input name="data" type="date" />
       </InputArea>
       <InputArea>
         <Label>Resultado</Label>
-        <InputArea name="resultado" />
+        <Input name="resultado" />
       </InputArea>
 
       <Button type="submit">SALVAR</Button>
